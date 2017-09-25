@@ -1,0 +1,50 @@
+using Microsoft.Bot.Builder.FormFlow;
+using System;
+using System.Collections.Generic;
+
+// The trainingForm class represents the form that you want to complete 
+// using information that is collected from the user. 
+// It must be serializable so the bot can be stateless. 
+// The order of fields defines the default sequence in which the user is asked questions.
+
+// The enumerations define the valid options for each field in SandwichOrder, and the order
+// of the values represents the sequence in which they are presented to the user in a conversation.
+
+namespace trainingForm
+{
+    public string companyName, function, givenName, surName, email, telephone, fax; 
+
+    public enum AdressOptions { Frau, Herr };
+    
+    public enum ClusterOptions
+    {
+        Energietechnik, Gesundheitswirtschaft, IKT/Medienkreativwirtschaft, Verkehr/Mobilität, Optik, Ernährungswirtschaft, Kunststoffe/Chemie, Metall, Tourismuswirtschaft
+    };
+
+    public enum RWKOptions
+    {
+        Brandenburg a.d.H., Cottbus, Eberswalde, Eisenhüttenstadt, Frankfurt (Oder), Luckenwalde,
+        Ludwigsfelde, Neuruppin, O-H-V, Potsdam, Prignitz, Schönefelderkreuz, Spremberg, Schwendt/Oder, Westlausitz, keins
+    };
+
+    [Serializable]
+    public class FormOrder
+    {
+        public CompanyName? CompanyName;
+        public Function? Function;
+        public GivenName? GivenName;
+        public Surname? Surname;
+        public Email Email;
+        public Telephone Telephone;
+        public Fax Fax;
+        public List<RWKOptions> RWKs;
+        public List<ClusterOptions> Cluster;
+
+        public static IForm<FormOrder> BuildForm()
+        {
+            return new FormBuilder<SandwichOrder>()
+                    .Message("Welcome to the simple form assistant bot!")
+                    .Build();
+        }
+    };
+}
