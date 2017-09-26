@@ -52,7 +52,7 @@ namespace LuisBot.FormOrder
         /// </summary>
         /// <param name="activity"></param>
         [ResponseType(typeof(void))]
-        [ResponseType(typeof(void))]public virtual async Task<HttpResponseMessage> Post([FromBody] Activity activity)
+        [ResponseType(typeof(void))]public virtual async Task<HttpResponseMessage> Post([FromBody] Microsoft.Bot.Connector.Activity activity)
         {
             if (activity != null)
             {
@@ -76,7 +76,7 @@ namespace LuisBot.FormOrder
 
         }
 
-        private Activity HandleSystemMessage(Activity message)
+        private Microsoft.Bot.Connector.Activity HandleSystemMessage(Microsoft.Bot.Connector.Activity message)
         {
             if (message.Type == ActivityTypes.DeleteUserData)
             {
